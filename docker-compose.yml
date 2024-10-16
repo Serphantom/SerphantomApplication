@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+  frontend:
+    hostname: frontend
+    env_file:
+      - ./.env
+    build:
+      #  context: ./advertisements
+      dockerfile: Dockerfile
+    ports:
+      # HTTPS Docker framework Django PROT 443
+      # - '443:443'
+
+      # HTTP Nginx configuration for server PORT 80
+      - '80:80'
+    environment:
+      - DEBUG=False
+
+    volumes:
+      - ./data:/app/data
+      - ./advertisements/media:/app/advertisements/media
+      - ./log:/app/log
+
+    restart: always
